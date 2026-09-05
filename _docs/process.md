@@ -20,7 +20,7 @@ Lifecycle
 3. Engineer implements it
 4. QA verifies it
 5. On FAIL, back to step 3 with the QA comment as input
-6. On PASS, close the issue, push the changes
+6. On PASS, merge the PR, close the issue, push the changes
 7. Repeat until the backlog is empty
 
 Rules
@@ -29,3 +29,5 @@ Rules
 - The engineer does not close the issue
 - QA does not fix the code, only outputs PASS or FAIL
 - The orchestrator closes the issue only after QA outputs PASS
+- On PASS, the orchestrator merges the PR without asking - QA passing is
+  the confirmation
