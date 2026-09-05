@@ -2,8 +2,8 @@ import uuid
 from datetime import date
 
 from sqlalchemy import Date, ForeignKey, Text, UniqueConstraint
-from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy import Enum as PgEnum
+from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base

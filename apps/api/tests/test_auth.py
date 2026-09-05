@@ -65,7 +65,9 @@ class _StaticJWKClient(PyJWKClient):
     """
 
     def __init__(self, jwks: dict):
-        super().__init__(uri="https://example-project.supabase.co/auth/v1/.well-known/jwks.json")
+        super().__init__(
+            uri="https://example-project.supabase.co/auth/v1/.well-known/jwks.json"
+        )
         self._jwks = jwks
 
     def fetch_data(self):

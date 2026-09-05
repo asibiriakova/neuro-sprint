@@ -8,15 +8,15 @@ Revises:
 Create Date: 2026-09-05 22:42:11.323541
 
 """
+
 from typing import Sequence, Union
 
-from alembic import op
 import sqlalchemy as sa
+from alembic import op
 from sqlalchemy.dialects import postgresql
 
-
 # revision identifiers, used by Alembic.
-revision: str = '545385b2a734'
+revision: str = "545385b2a734"
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None

@@ -79,13 +79,14 @@ def test_migration_created_fk_cascade_and_unique_constraint(db_engine):
 
     unique_constraints = inspector.get_unique_constraints("state_logs")
     assert any(
-        set(uc["column_names"]) == {"user_id", "logged_at"}
-        for uc in unique_constraints
+        set(uc["column_names"]) == {"user_id", "logged_at"} for uc in unique_constraints
     )
 
 
 def test_sprint_task_state_log_can_be_created(db_session):
-    sprint = make_sprint(integration_week_duration_days=3, integration_week_notes="rest")
+    sprint = make_sprint(
+        integration_week_duration_days=3, integration_week_notes="rest"
+    )
     task = Task(
         sprint=sprint,
         title="Write acceptance criteria",
