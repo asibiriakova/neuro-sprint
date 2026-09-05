@@ -23,6 +23,13 @@ vi.mock("next/navigation", () => ({
 vi.mock("@/app/logout/actions", () => ({
   logout: vi.fn(),
 }));
+vi.mock("@/lib/api", () => ({
+  // DashboardPage itself doesn't call the API; this only exists so its
+  // child <ApiProfile /> Client Component doesn't make a real
+  // fetch/Supabase call while rendering in this test.
+  apiFetch: vi.fn(() => new Promise(() => {})),
+  ApiError: class ApiError extends Error {},
+}));
 
 import DashboardPage from "./page";
 
