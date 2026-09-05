@@ -38,7 +38,10 @@ describe("signup server action", () => {
   });
 
   it("returns an inline error for missing fields without calling Supabase", async () => {
-    const state = await signup(undefined, formDataOf({ email: "", password: "" }));
+    const state = await signup(
+      undefined,
+      formDataOf({ email: "", password: "" }),
+    );
 
     expect(state).toEqual({ error: "Email and password are required." });
     expect(signUp).not.toHaveBeenCalled();
@@ -47,7 +50,7 @@ describe("signup server action", () => {
   it("returns an inline error for a too-short password", async () => {
     const state = await signup(
       undefined,
-      formDataOf({ email: "user@example.com", password: "abc" })
+      formDataOf({ email: "user@example.com", password: "abc" }),
     );
 
     expect(state).toEqual({
@@ -64,7 +67,7 @@ describe("signup server action", () => {
 
     const state = await signup(
       undefined,
-      formDataOf({ email: "user@example.com", password: "password123" })
+      formDataOf({ email: "user@example.com", password: "password123" }),
     );
 
     expect(state).toEqual({ error: "User already registered" });
@@ -80,8 +83,8 @@ describe("signup server action", () => {
     await expect(
       signup(
         undefined,
-        formDataOf({ email: "new@example.com", password: "password123" })
-      )
+        formDataOf({ email: "new@example.com", password: "password123" }),
+      ),
     ).rejects.toThrow("REDIRECT:/dashboard");
 
     expect(signUp).toHaveBeenCalledWith({

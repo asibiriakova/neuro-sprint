@@ -16,7 +16,7 @@ describe("SignupPage", () => {
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /sign up/i })
+      screen.getByRole("button", { name: /sign up/i }),
     ).toBeInTheDocument();
   });
 
@@ -34,7 +34,7 @@ describe("SignupPage", () => {
     fireEvent.click(screen.getByRole("button", { name: /sign up/i }));
 
     expect(
-      await screen.findByText("User already registered")
+      await screen.findByText("User already registered"),
     ).toBeInTheDocument();
   });
 

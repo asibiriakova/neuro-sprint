@@ -41,7 +41,7 @@ describe("DashboardPage", () => {
 
     expect(screen.getByText(/me@example.com/)).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /log out/i })
+      screen.getByRole("button", { name: /log out/i }),
     ).toBeInTheDocument();
   });
 

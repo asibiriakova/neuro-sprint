@@ -12,7 +12,7 @@ const { signInWithPassword, mockCreateClient, mockRedirect } = vi.hoisted(
         throw new Error(`REDIRECT:${path}`);
       }),
     };
-  }
+  },
 );
 
 vi.mock("@/lib/supabase/server", () => ({
@@ -40,7 +40,10 @@ describe("login server action", () => {
   });
 
   it("returns an inline error for missing fields without calling Supabase", async () => {
-    const state = await login(undefined, formDataOf({ email: "", password: "" }));
+    const state = await login(
+      undefined,
+      formDataOf({ email: "", password: "" }),
+    );
 
     expect(state).toEqual({ error: "Email and password are required." });
     expect(signInWithPassword).not.toHaveBeenCalled();
@@ -54,7 +57,7 @@ describe("login server action", () => {
 
     const state = await login(
       undefined,
-      formDataOf({ email: "user@example.com", password: "wrong-password" })
+      formDataOf({ email: "user@example.com", password: "wrong-password" }),
     );
 
     expect(state).toEqual({ error: "Invalid login credentials" });
@@ -70,8 +73,8 @@ describe("login server action", () => {
     await expect(
       login(
         undefined,
-        formDataOf({ email: "user@example.com", password: "correct-password" })
-      )
+        formDataOf({ email: "user@example.com", password: "correct-password" }),
+      ),
     ).rejects.toThrow("REDIRECT:/dashboard");
 
     expect(signInWithPassword).toHaveBeenCalledWith({

@@ -15,9 +15,7 @@ describe("LoginPage", () => {
 
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: /log in/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /log in/i })).toBeInTheDocument();
   });
 
   it("shows an inline error instead of crashing on wrong credentials", async () => {
@@ -34,7 +32,7 @@ describe("LoginPage", () => {
     fireEvent.click(screen.getByRole("button", { name: /log in/i }));
 
     expect(
-      await screen.findByText("Invalid login credentials")
+      await screen.findByText("Invalid login credentials"),
     ).toBeInTheDocument();
   });
 
