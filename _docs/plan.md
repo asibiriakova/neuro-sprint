@@ -57,15 +57,24 @@ NeuroSprint is a web application designed for personal execution of 3-week goal 
 
 ---
 
-## 4. Suggested Tech Stack
+## 4. Tech Stack (Decided)
 
-| Layer | Recommended Technology |
-| :--- | :--- |
-| **Frontend** | Next.js (React), Tailwind CSS, Framer Motion, Lucide Icons |
-| **Backend / API** | FastAPI (Python) or Node.js / Next.js Server Actions |
-| **Database & Auth** | PostgreSQL (Supabase / Google Cloud SQL) |
-| **AI Orchestration** | Google Cloud Vertex AI (Gemini 1.5 Pro / Flash) |
-| **Integrations** | CalDAV client library (`tsdav` or `caldav-adapter`), `python-telegram-bot` |
+**Architecture: Polyglot** — a Next.js frontend paired with a dedicated FastAPI backend, chosen over a single-language (TypeScript-only or Python-only) stack because Python has the most mature, best-documented libraries for the two external integrations (CalDAV, Telegram bot), while Next.js/React is the best fit for the app's rich, stateful UI (split-screen canvas, drag-and-drop Kanban, circular time gauges, 21-day heatmap).
+
+| Layer | Technology | Notes |
+| :--- | :--- | :--- |
+| **Frontend** | Next.js (React), Tailwind CSS, Framer Motion, Lucide Icons | Calls the FastAPI backend only through its own internal API — never calls the AI provider directly. |
+| **Backend / API** | FastAPI (Python) | Owns AI orchestration, CalDAV sync job, and the Telegram bot; async-native, good fit for scheduled jobs (APScheduler/Celery). |
+| **Database & Auth** | PostgreSQL (Supabase or Google Cloud SQL) | Relational schema needed for Sprint/Task/StateLog aggregation (hour caps, 21-day heatmap, per-project time totals). |
+| **AI Orchestration** | Gemini API via Google AI Studio API key | Consumer subscriptions (Gemini Advanced, Claude Pro/Max) do **not** cover programmatic API access — a separate Google AI Studio API key is required, billed independently (free tier available, pay-as-you-go beyond it). Key is held server-side in FastAPI only. Model: Gemini 2.5 Flash for coaching/decomposition, Gemini 2.5 Pro for deeper retrospective reasoning if needed. |
+| **Integrations** | `caldav` (Python), `python-telegram-bot` | Both run inside the FastAPI service. |
+
+### Options Considered
+
+1. **TS-only / BaaS-first** (Next.js + Supabase, no separate backend) — fastest to build solo, but weaker Node CalDAV libraries and awkward cron/bot handling in serverless functions.
+2. **Polyglot** (Next.js + FastAPI) — **selected**. Best integration-library support, clean separation of concerns, decoupled from AI provider choice.
+3. **Single Python stack** (Django or FastAPI+SQLModel, server-rendered or SPA frontend) — batteries-included, but HTMX/Alpine strains under the app's rich interactive UI.
+4. **Serverless/Firebase** (Next.js + Firebase/Firestore) — good for realtime, but Firestore is a poor fit for the relational aggregation this app's dashboard needs.
 
 ---
 
