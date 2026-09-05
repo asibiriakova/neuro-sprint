@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "NeuroSprint FastAPI backend"
 requires-python = ">=3.11"
 dependencies = [
+    "alembic>=1.19.2",
     "fastapi>=0.115",
+    "psycopg[binary]>=3.3.5",
+    "sqlalchemy>=2.0.52",
     "uvicorn[standard]>=0.30",
 ]
 
