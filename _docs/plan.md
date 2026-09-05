@@ -22,9 +22,24 @@ NeuroSprint is a web application designed for personal execution of 3-week goal 
 * **Top 3 Daily Priorities:** Selection of 3 focus tasks for the day filtered from the approved sprint backlog[cite: 1].
 * **Resource Logging:** Single input field to log a "Remarkable moment of the last 24 hours" to train positive memory bias[cite: 1].
 
+#### NeuroBalance Zone Mapping (canonical)
+
+The 7 states group into three physiological zones, each with its own color gradient. This mapping is canonical (from the Neurointegration method's own materials) — treat it as settled, not a product judgment call:
+
+| Zone | States | Color gradient | Physiological context |
+| :--- | :--- | :--- | :--- |
+| **Burnout** | Apathy, Passivity | Purple → Blue | Hypoactivation: energy deficit, resource depletion, "freeze" mode. |
+| **Integration** | Relaxation, Balance, Engagement | Turquoise → Green → Yellow | Optimal window: prefrontal cortex active, focus and cognitive flexibility available. |
+| **Distress** | Overarousal, Panic | Orange → Red | Hyperactivation: adrenaline overload, amygdala response, anxiety, "fight/flight" mode. |
+
+Used by Module 5's NeuroBalance Heatmap (zone/color per day) and Module 3's SOS triage (routes by zone, not by individual state).
+
 ### Module 3: SOS Practices & Micro-regulations
 * **Entry Point:** Global Floating Action Button (FAB) available on all screens.
-* **Triage & Delivery:** Quick symptom selection (e.g., panic/overarousal vs. apathy/freeze) routing directly to a 2–5 minute guided somatic, sensory, or breathwork exercise with an interactive timer[cite: 1].
+* **Triage & Delivery:** Quick symptom selection routes by zone (see Zone Mapping above), not by individual state — panic/overarousal → **Distress** zone; apathy/freeze → **Burnout** zone — directly to a 1–5 minute guided somatic, sensory, or breathwork exercise with an interactive timer[cite: 1]. (Range corrected from an original "2–5 minutes" — the canonical Cold Vagal Stimulation protocol runs 1–2 minutes; see `sos-practices.md`.)
+  * **Burnout** (blue/purple): gentle recovery practices, sensory resourcing, switching into the Joy pillar.
+  * **Distress** (orange/red): grounding practices, extended exhale, somatic techniques that downregulate the sympathetic nervous system.
+  * Canonical practice content (exact protocols, durations, effects): see [`sos-practices.md`](sos-practices.md).
 * **Neuro-Challenge Deck:** Weekly proactive micro-challenges (e.g., cold exposure, sensory anchoring) to build amygdala regulation and resilience[cite: 1].
 
 ### Module 4: Transformational Reflection & Archive
