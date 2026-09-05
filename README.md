@@ -15,9 +15,11 @@ Requires Node `24.17.0` (pinned in `apps/web/.nvmrc` — `nvm use` picks it up a
 
 ```bash
 cd apps/web
-npm install       # install dependencies
-npm run dev       # run locally at http://localhost:3000
-npm test          # run the test suite
+npm install           # install dependencies
+npm run dev           # run locally at http://localhost:3000
+npm test              # run the test suite
+npm run lint          # ESLint — fails on any rule violation
+npm run format:check  # Prettier — fails on any formatting violation
 ```
 
 ## apps/api (backend)
@@ -29,6 +31,8 @@ cd apps/api
 uv sync                              # install dependencies into .venv
 uv run uvicorn app.main:app --reload # run locally at http://localhost:8000
 uv run pytest                        # run the test suite
+uv run ruff check .                  # lint — fails on any rule violation
+uv run black --check .               # format check — fails on any formatting violation
 ```
 
 `GET /health` returns `{"status": "ok"}` once the server is running.

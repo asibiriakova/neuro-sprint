@@ -20,7 +20,7 @@ you need to provide your own:
    and will be bounced back to `/login` from the protected dashboard
    route.
 5. Also make sure `apps/api`'s `SUPABASE_URL` (see
-   `apps/api/.env.example`) is set to the *same* Supabase project, so
+   `apps/api/.env.example`) is set to the _same_ Supabase project, so
    the backend can verify tokens this frontend issues.
 
 What's implemented and unit-tested (with mocked Supabase clients, no

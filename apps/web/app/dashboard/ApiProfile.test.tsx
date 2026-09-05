@@ -31,19 +31,19 @@ describe("ApiProfile", () => {
     render(<ApiProfile />);
 
     expect(
-      await screen.findByText("From API: user-123 / me@example.com")
+      await screen.findByText("From API: user-123 / me@example.com"),
     ).toBeInTheDocument();
   });
 
   it("shows a visible error state when the request fails", async () => {
     mockApiFetch.mockRejectedValue(
-      new ApiError("http", "Request failed with status 500.", 500)
+      new ApiError("http", "Request failed with status 500.", 500),
     );
 
     render(<ApiProfile />);
 
-    expect(
-      await screen.findByRole("alert")
-    ).toHaveTextContent("Something went wrong talking to the server.");
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "Something went wrong talking to the server.",
+    );
   });
 });

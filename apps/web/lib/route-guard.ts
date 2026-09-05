@@ -9,7 +9,7 @@ const AUTH_ROUTES = ["/login", "/signup"];
 
 export function isProtectedPath(pathname: string): boolean {
   return PROTECTED_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
   );
 }
 
@@ -27,7 +27,7 @@ export function isAuthRoute(pathname: string): boolean {
  */
 export function decideRedirect(
   pathname: string,
-  isLoggedIn: boolean
+  isLoggedIn: boolean,
 ): string | null {
   if (isProtectedPath(pathname) && !isLoggedIn) {
     return "/login";

@@ -76,7 +76,7 @@ function apiBaseUrl(): string {
  */
 export async function apiFetch<T>(
   path: string,
-  init: RequestInit = {}
+  init: RequestInit = {},
 ): Promise<T> {
   const supabase = createClient();
   const {
@@ -119,7 +119,7 @@ export async function apiFetch<T>(
     throw new ApiError(
       "http",
       `Request failed with status ${response.status}.`,
-      response.status
+      response.status,
     );
   }
 
@@ -128,7 +128,7 @@ export async function apiFetch<T>(
   } catch {
     throw new ApiError(
       "invalid-json",
-      "The server response could not be parsed."
+      "The server response could not be parsed.",
     );
   }
 }

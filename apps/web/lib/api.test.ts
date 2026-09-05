@@ -63,7 +63,9 @@ describe("apiFetch", () => {
   });
 
   it("redirects to /login on a 401 response", async () => {
-    const fetchMock = vi.fn().mockResolvedValue(jsonResponse({}, { status: 401 }));
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValue(jsonResponse({}, { status: 401 }));
     global.fetch = fetchMock as unknown as typeof fetch;
 
     await expect(apiFetch("/me")).rejects.toThrow("REDIRECT:/login");
@@ -84,7 +86,9 @@ describe("apiFetch", () => {
   });
 
   it("rejects with an ApiError when the backend is unreachable", async () => {
-    const fetchMock = vi.fn().mockRejectedValue(new TypeError("Failed to fetch"));
+    const fetchMock = vi
+      .fn()
+      .mockRejectedValue(new TypeError("Failed to fetch"));
     global.fetch = fetchMock as unknown as typeof fetch;
 
     const error = await apiFetch("/me").catch((err) => err);
@@ -99,9 +103,11 @@ describe("apiFetch", () => {
       (_url: string, options: RequestInit) =>
         new Promise((_resolve, reject) => {
           options.signal?.addEventListener("abort", () => {
-            reject(new DOMException("The operation was aborted.", "AbortError"));
+            reject(
+              new DOMException("The operation was aborted.", "AbortError"),
+            );
           });
-        })
+        }),
     );
     global.fetch = fetchMock as unknown as typeof fetch;
 
@@ -117,7 +123,8 @@ describe("apiFetch", () => {
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
       status: 200,
-      json: () => Promise.reject(new SyntaxError("Unexpected end of JSON input")),
+      json: () =>
+        Promise.reject(new SyntaxError("Unexpected end of JSON input")),
     } as unknown as Response);
     global.fetch = fetchMock as unknown as typeof fetch;
 
