@@ -76,7 +76,6 @@ class _StaticJWKClient(PyJWKClient):
 def _configure_auth(monkeypatch):
     monkeypatch.setenv("SUPABASE_URL", "https://example-project.supabase.co")
     monkeypatch.setenv("SUPABASE_JWT_AUD", "authenticated")
-    monkeypatch.delenv("SUPABASE_JWT_SECRET", raising=False)
 
     fake_client = _StaticJWKClient({"keys": [_jwk_for(_PUBLIC_KEY, _KID)]})
     # Replacing the whole (lru_cache-wrapped) function, rather than
